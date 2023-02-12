@@ -1,5 +1,5 @@
 # Prediction Model for H1NI Vaccine Uptake
-![H1N1]([http://localhost:8888/view/H1N1VACCINE.jpeg](https://github.com/Mitchege/H1NI-Vaccine-Model/blob/main/H1N1VACCINE.jpeg))
+![H1N1](https://github.com/Mitchege/H1NI-Vaccine-Model/blob/main/H1N1VACCINE.jpeg)
 
 
 
@@ -10,26 +10,42 @@ The goal of this project is to build a predictive model determining whether peop
 ## Dependecies
 
 *python3
+
 *numpy
+
 *pandas
+
 *seaborn
+
 *sklearn
+
 *scipy.stats
+
 *statsmodels
+
 *matplotlib
+
 *scipy
 
 The project is divided into the following sections:
 
-Business understanding
+## Business understanding
 i. Main objective
+
 ii. Objectives
+
 iii. Data understanding
+
 iv Data preparation
+
 v. Exploratory data analysis
+
 vi. Modeling
+
 vii. Conclusion
+
 viii. Recommendations
+
 ix. Future improvement Ideas
 
 ## Business Understanding
