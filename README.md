@@ -1,31 +1,36 @@
-# H1NI-Vaccine-Modelling
+# Prediction Model for H1NI Vaccine Uptake
+![H1N1](http://localhost:8888/view/H1N1VACCINE.jpeg)
+
+
+
 ## Overview
 The goal of this project is to build a predictive model determining whether people got H1N1 vaccines using information shared about their backgrounds, opinions, and health behaviors. This will be important for stakeholders such as NGOs and the government.
 
 
 ## Dependecies
 
-python3
-numpy
-pandas
-seaborn
-sklearn
-scipy.stats
-statsmodels
-matplotlib
-scipy
+*python3
+*numpy
+*pandas
+*seaborn
+*sklearn
+*scipy.stats
+*statsmodels
+*matplotlib
+*scipy
 
 The project is divided into the following sections:
 
 Business understanding
-Main objective
-Objectives
-Data understanding
-Data preparation
-Exploratory data analysis
-Modeling
-Evaluation
-Conclusion
+i. Main objective
+ii. Objectives
+iii. Data understanding
+iv Data preparation
+v. Exploratory data analysis
+vi. Modeling
+vii. Conclusion
+viii. Recommendations
+ix. Future improvement Ideas
 
 ## Business Understanding
 
@@ -36,48 +41,65 @@ Having a comprehensive knowledge of the traits linked to individuals' vaccinatio
 
 
 ## Main objective
+
 The goal of this project is to build a predictive model determining whether people got H1N1 vaccines using information shared about their backgrounds, opinions, and health behaviors.
 
 
-Objectives
-To identify the most significant features in determining insurance premiums
+### Specific Objectives
 
-To build a linear regression model that can accurately predict insurance premiums based on input features from the Kaggle insurance premium prediction dataset.
+To identify the most significant features in determining whether an individual is vaccinated against H1N1.
 
-To assess the performance of the predictive model and identify potential areas for improvement.
+To build a Decision Tree, Random Forest and SMV model that can accurately predict whether an individual is vaccinated against H1N1.
 
-Data Understanding
-Data Source
-The dataset used for this project was obtained from Kaggle.
+To assess the performance of the predictive models and identify the best one and potential areas for improvement.
 
-Data Description
-The insurance.csv dataset contains 7 columns and 1338 observations (rows). The 7 columns contain 4 numerical features (age, bmi, children and expenses) and 3 categorical features (region, sex and smoker).
 
-Data Preparation
-The data was cleaned and pre-processed to ensure that it was in a usable form. This was done by removing duplicates and checking for outliers. The data was also validated against an external data source to ensure that it was in line with what it should be. Using exploratory data analysis, the data sets were analyzed and trends found by using statistics and visualizations to aid in comprehending the data set.
+### Data Understanding
+#### Data Source
+The dataset used for this project was obtained from  [Drivendata](https://www.drivendata.org/competitions/66/flu-shot-learning/)
 
-Modeling
-Multiple linear regression was used to build the predictive model. In summary, the data modeling process for insurance premium prediction using Linear regression involved checking the correlation between the predictor and target variables, which resulted in weak correlations for all predictor variables. Binary encoding was used to convert the categorical data into a form that can be used by the Ordinary Least Squares (OLS) model. The Least Squares Method (LSM) was used to fit the model and it was found to be statistically significant with a probability of F-statistic below 0.05. The model was able to explain 74.8% of the variation in the insurance premium and had a Mean Absolute Percentage Error (MAPE) of 42.26%. However, it was also found that there existed a non-linear relationship between the predictors and the response variable and there was some evidence of heteroskedasticity as the residuals displayed a funnel-shape
-A second model was fitted to to deal with the non-linear relationships between the predictor and response. The target, age and BMI was log transformed and fitted using OLS where the model's Adjusted R-squared increase to 76 %. The MAPE also reduced significantly to 23 %. The final model was fitted to further refine the non-linear relationships. After log-transforming the target and including interaction terms for between smoker, age and BMI, the final model improved further to record an R-squared of 82%. It also recorded a MAPE of 10 %
+### Data Description
 
-Evaluation
-The performance of the predictive model was evaluated using several metrics including R-squared and Mean Absolute Percentage Error (MAPE). The final model was found to have an R-squared value of 0.821, a MAPE of 10%.
+The data was in csv format and contained training, test and label data. The dataset contained 26,707 rows and 38 columns. The 38 columns contained 26 numerical features and 12 categorical features.
 
-Recommendations
-1.The company should consider implementing a higher premium for smokers, as the data indicates that they have a higher expected expense.
 
-2.The company should also take into account the number of children when setting premiums, as this variable had a positive correlation with expenses.
+### Data Preparation
+The necessary libraries were imported and then the training and label dataset was loaded onto the notebook. 
+The  training and label dataset was first merged, read and then checked to ensure that each column has an appropriate datatype. This also highlighted the columns with null values which would be tidied in the next few steps. Lastly, the various statistical measures in the data frame were checked for each feature. 
+The data was then cleaned and pre-processed to ensure that it was complete for modeling purposes. This included identifying the null values, computing the percentage of the missing values and dropping columns with missing data greater than 10%. Later, a data frame of the remaining columns with missing values was created and the numerical and categorical columns were cleaned separately. For the numerical columns, the null values were replaced with the mode while for the categorical columns null values were replaced with ‘missing’. With the null values taken care off, all duplicated rows were identified and dropped accordingly and all columns relating to seasonal_vaccine were dropped. This was because H1N1 was selected as the target variable for the project.  
 
-3.The company can also consider offering discounted premiums for policyholders from the SouthWest and Northwest regions, as they had lower expected expenses compared to those from the SouthEast region.
 
-4.The company should also consider collecting more data on other factors such as medical conditions, previous claims, lifestyle, and occupation to improve the accuracy of their pricing model.
+### Modeling
+Data modeling process involved pre processing the data first. This involved feature selection which is the process of selecting a subset of the most important features or variables from a larger set of features. By conducting feature selection and deleting noisy, redundant, or irrelevant characteristics from the data, feature selection aims to improve the performance of machine learning systems. A heat map showing the correlations between the various features and target variable was plotted. Afterwards, all unecessary columns and features with low correlation with the target variable were dropped. Lastly, all categorical features were encoded using ordinal encoding and the dataframe split and scaled. 
 
-5.The company can also consider offering discounts for individuals who maintain a healthy BMI, as this variable was negatively correlated with expenses.
+The next steps involved building models using Decision Tree, Random Forest and SMV classifiers. The steps for each of these classifiers were similar and are broken down as follows:
+i) Training a classifier.
+ii) Making predictions for test data.
+iii) Calculating accuracy, precsion and recall.
+iv) Using GridSearchCV to tune the classifier’s hyperparamenters.
+v) Insantiating the model with the best parameters from grid search.
+vi) Making predictions for test data using the tuned model.
+vii) Calculating accuracy, precsion and recall once more.
+These steps were used in all models with the exception of decision tress where Bootdtrap Aggregation (Bagging) was carried out to reduce the variance of the model and improve its generalization performance.
 
-6.The company should also consider the age of a policyholder when setting premiums, as this variable had a positive correlation with expenses.
 
-7.The company should also consider the policyholders sex when setting premiums, as this variable had a positive correlation with expenses for males.
+### Conclusion
+|Model | Accuracy | Precision | Recall | F1 |
+|:--- |:--- |:--- |:--- |:--- |
+|Decision Tree| 83% |76% |68% |71% |
+|Random Forest| 83% |78% |67% |70% |
+|SVM| 83% |77% |68% |71% |
 
-8.Finally, the company should consider using the developed model as a guide for pricing premiums, as it had a low MAPE of 10% which indicates that it is a good model for predicting expenses.
+The performance of the predictive model was evaluated using the precision score and recall score. The final model was found to have a precision score of 83%, and a recall score of 68%.
 
-The model developed in this project can accurately predict insurance premiums for policyholders based on their characteristics. Insurance companies can use this model to manage risk and ensure financial stability by setting premiums that are aligned with the level of risk. Potential areas for improvement include further feature engineering and the use of other predictive modeling techniques.
+### Recommendations
+The stakeholders (government and NGOs) should consider conducting mass education through awareness campaigns to reduce vaccine hesitation.
+
+ii.The stakeholders should work with hospitals to encourage vaccine uptake through doctors recommendations.
+
+iii.The stakeholders should focus on educating younger age groups on the importance of vaccinations.
+
+### Future Improvement Ideas
+1.Building a pipeline for this model.
+
+2.Tuning the Random Forest classifier with a larger range.
