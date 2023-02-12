@@ -1,5 +1,5 @@
 # Prediction Model for H1NI Vaccine Uptake
-![H1N1](http://localhost:8888/view/H1N1VACCINE.jpeg)
+![H1N1]([http://localhost:8888/view/H1N1VACCINE.jpeg](https://github.com/Mitchege/H1NI-Vaccine-Model/blob/main/H1N1VACCINE.jpeg))
 
 
 
